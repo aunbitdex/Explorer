@@ -1,0 +1,100 @@
+<footer class="footer">
+  <div class="footer-body container">
+    <!-- Logo -->
+    <div class="row footer-logo-row">
+      <div class="col-md-12">
+        <%= link to: webapp_url(@conn), class: "footer-brand" do %>
+          <%= if logo_footer() do %>
+            <img class="footer-logo" src="<%= static_path(@conn, logo_footer()) %>" alt="<%= subnetwork_title() %>" />
+          <% end %>
+          <%= if logo_text() do %>
+            <span class="logo-text in-footer <%= unless logo_footer(), do: "no-logo" %>"> <%= logo_text() %> </span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <% other_explorers = other_explorers() %>
+    <% col_size = if Enum.empty?(other_explorers), do: 3, else: 2 %>
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-3">
+        <p class="footer-info-text"><%= gettext("MetaViral SmartChain is a Block Explorer and Analytics Platform for MTV Smart Chain") %></p>
+        <div class="footer-info-link">
+          
+        </div>
+        <div class="footer-social-logo">
+          <p><a class="footer-link js-btn-add-chain-to-mm btn-add-chain-to-mm" style="cursor: pointer;"><img class="" src="/images/icon-mask-group.png" alt="Metamask" /> <%= gettext("Add ") <> " #{System.get_env("SUBNETWORK")}" <> gettext(" Network")%></a> </p>
+          <p><a href="#" target="_blank" ><%= gettext("Buy ") <> " #{System.get_env("SUBNETWORK")}" %></a>
+          <a href="#" target="_blank" >Create a new contract</a></p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Official Links</h3>
+        <ul>
+          <li><a href="" rel="noreferrer" class="footer-link" target="_blank"><%= gettext("Official Website") %></a></li>
+          <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("Token Tool") %></a></li>
+          <li><a href="" rel="noreferrer" class="footer-link"><%= gettext("NFT Market") %></a></li>
+        </ul>
+      </div>
+      <% main_nets = main_nets(other_networks()) %>
+
+      <%= unless Enum.empty?(main_nets) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Community") %></h3>
+          <ul>
+            <li><a href="#" rel="noreferrer" class="footer-link"><%= gettext("API Documentation") %></a></li>
+            <li><a href="#" rel="noreferrer" class="footer-link"><%= gettext("Knowledge Base") %></a></li>
+            <li><a href="#" rel="noreferrer" class="footer-link"><%= gettext("Network Status") %></a></li>
+            <li><a href="#" rel="noreferrer" class="footer-link"><%= gettext("Learn MTV") %></a></li>
+          </ul>
+        </div>
+      <% end %>
+
+      <% test_nets = test_nets(other_networks()) %>
+
+      <%= unless Enum.empty?(test_nets) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Developers") %></h3>
+          <ul>
+            <li><a href="#" rel="noreferrer" class="footer-link"><%= gettext("Chain ID: 113603") %></a></li>
+            <li><a href="https://mainnet-rpc.aunbitdex.io" rel="noreferrer" class="footer-link"><%= gettext("Mainnet RPC") %></a></li>
+            <li><a href="https://status.aunbitdex.io" rel="noreferrer" class="footer-link"><%= gettext("Status") %></a></li>
+            <!-- <li><a href="https://docs.aunbitdex.io" rel="noreferrer" class="footer-link"><%= gettext("Docs") %></a></li> -->
+          </ul>
+        </div>
+      <% end %>
+
+      <%= unless Enum.empty?(other_explorers) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Other Explorers") %></h3>
+          <ul>
+            <%= for {name, url} <- other_explorers do %>
+              <li><a href="<%= url %>" rel="noreferrer" class="footer-link"> <%= name %> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="footer-line">
+      <div class="footer-version ">
+        <%= gettext("Aunbitdex SmartChain © 2023 (ABDX)   |   Donate ") %>
+      </div>
+      <div class="footer-social-icons footer-social-icons-custom ">
+        <a href="" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Facebook") %>'>
+          <div class="footer-social-icon-container fontawesome-icon facebook"></div>
+        </a>
+        <a href="" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
+          <div class="footer-social-icon-container fontawesome-icon twitter"></div>
+        </a>
+        <a href="" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
+          <div class="footer-social-icon-container fontawesome-icon telegram"></div>
+        </a>
+        <a href="" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Youtube") %>'>
+          <div class="footer-social-icon-container fontawesome-icon youtobe"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
